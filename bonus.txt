@@ -1,0 +1,14 @@
+st.markdown("## 🌟 Bonus Options (Optional)")
+
+# Example Bonus Query: Students with no backlogs and highest leadership score
+bonus_query = """
+SELECT s.name, s.cgpa, ss.leadership
+FROM students s
+JOIN soft_skills ss ON s.student_id = ss.student_id
+WHERE s.backlogs = 0
+ORDER BY ss.leadership DESC
+LIMIT 5
+"""
+
+bonus_df = pd.read_sql_query(bonus_query, conn)
+st.dataframe(bonus_df)
